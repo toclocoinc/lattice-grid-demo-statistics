@@ -14,7 +14,7 @@ pieces in step.
 ## About the data
 
 Abalone are marine snails harvested for food and mother-of-pearl shell. These measurements
-come from abalone collected in Tasmania in 1994 and published through the
+come from abalone collected in Tasmania, published in 1994 through the
 [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/1/abalone) under a
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) licence. An abalone's shell grows a
 ring every year, so counting rings gives its age in years, about rings plus one and a half.

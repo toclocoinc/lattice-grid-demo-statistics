@@ -1,0 +1,8 @@
+{
+  "name": "lattice-grid-demo-statistics",
+  "private": true,
+  "type": "module",
+  "description": "Statistics you can filter: a Lattice Grid demo",
+  "scripts": { "serve": "node tools/serve.mjs 8000", "verify": "node tools/verify.mjs" },
+  "devDependencies": { "puppeteer-core": "^24.0.0" }
+}

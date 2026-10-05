@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Statistics you can filter | Lattice Grid</title>
+<meta name="description" content="Profile any column, fit a regression, flag influential rows and compare groups inside the grid. Filter to one segment and every number and chart refits.">
+<link rel="icon" href="data:,">
+<script>
+  if (new URLSearchParams(location.search).get('theme') === 'dark') document.documentElement.dataset.theme = 'dark';
+</script>
+<!-- The grid comes from the published package. To use a newer release, change the version in these three lines. -->
+<script type="importmap">
+{ "imports": {
+  "@toclocoinc/lattice-grid": "https://cdn.jsdelivr.net/npm/@toclocoinc/lattice-grid@1.86.7/lattice-grid.esm.min.js",
+  "@toclocoinc/lattice-grid/modules/charts": "https://cdn.jsdelivr.net/npm/@toclocoinc/lattice-grid@1.86.7/modules/charts.esm.min.js" } }
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@toclocoinc/lattice-grid@1.86.7/lattice-grid.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>Statistics you can filter</h1>
+  <p class="lede">Choose a segment of abalone and the column profile, the regression, the influence flags, the group comparison
+    and the fitted chart all refit to just those rows, instantly.</p>
+  <div class="bar">
+    <label>Segment <select id="segment"></select></label>
+    <span id="summary" aria-live="polite"></span>
+  </div>
+</header>
+<main class="layout">
+  <section class="panel" id="grid-panel"><div class="panel__head">Abalone: statistics panel, fitted values and flags</div><div class="panel__body"><div id="grid"></div></div></section>
+  <section class="panel"><div class="panel__head">Rings by shell weight, with the 95% confidence band</div><div class="panel__body"><div id="fit"></div></div></section>
+  <section class="panel"><div class="panel__head">Influence: residual against leverage, sized by Cook's D</div><div class="panel__body"><div id="influence"></div></div></section>
+  <section class="panel"><div class="panel__head">Females and males compared (shell weight)</div><div class="panel__body" id="compare"></div></section>
+</main>
+<footer>
+  Data: <a href="https://archive.ics.uci.edu/dataset/1/abalone">Abalone</a>, Nash, Sellers, Talbot, Cawthorn and Ford (1994),
+  UCI Machine Learning Repository, licence <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+  Built with <a href="https://www.latticegrid.dev/statistics/">Lattice Grid</a>. No keys, no analytics.
+</footer>
+<script type="module" src="main.js"></script>
+</body>
+</html>

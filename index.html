@@ -28,11 +28,39 @@
     <span id="summary" aria-live="polite"></span>
   </div>
 </header>
+<section class="about">
+  <details open>
+    <summary>About the data</summary>
+    <p>Abalone are marine snails harvested for food and mother-of-pearl shell. These measurements
+      come from abalone collected in Tasmania in 1994 and published through the
+      <a href="https://archive.ics.uci.edu/dataset/1/abalone">UCI Machine Learning Repository</a> under a
+      <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> licence. An abalone's shell grows
+      a ring every year, so counting rings gives its age in years, about rings plus one and a half.
+      Counting rings means cutting the shell, staining it and counting under a microscope, so this demo
+      asks whether simple measurements of size and weight can predict the ring count instead.</p>
+  </details>
+</section>
 <main class="layout">
-  <section class="panel" id="grid-panel"><div class="panel__head">Abalone: statistics panel, fitted values and flags</div><div class="panel__body"><div id="grid"></div></div></section>
-  <section class="panel"><div class="panel__head">Rings by shell weight, with the 95% confidence band</div><div class="panel__body"><div id="fit"></div></div></section>
-  <section class="panel"><div class="panel__head">Influence: residual against leverage, sized by Cook's D</div><div class="panel__body"><div id="influence"></div></div></section>
-  <section class="panel"><div class="panel__head">Females and males compared (shell weight)</div><div class="panel__body" id="compare"></div></section>
+  <section class="panel" id="grid-panel">
+    <div class="panel__head">Abalone: statistics panel, fitted values and flags</div>
+    <p class="panel__note">Fitted rings, residual and influence sit beside the raw measurements here, so you can sort or filter on them like any other column.</p>
+    <div class="panel__body"><div id="grid"></div></div>
+  </section>
+  <section class="panel">
+    <div class="panel__head">Rings by shell weight, with the 95% confidence band</div>
+    <p class="panel__note">The line is the model's best estimate of rings from shell weight; the shaded band shows where the true average is likely to fall.</p>
+    <div class="panel__body"><div id="fit"></div></div>
+  </section>
+  <section class="panel">
+    <div class="panel__head">Influence: residual against leverage, sized by Cook's D</div>
+    <p class="panel__note">Points to the right have unusual measurements; bigger points pull the fitted line harder.</p>
+    <div class="panel__body"><div id="influence"></div></div>
+  </section>
+  <section class="panel">
+    <div class="panel__head">Females and males compared (shell weight)</div>
+    <p class="panel__note">Shows whether average shell weight differs between females and males, and how confident that difference is.</p>
+    <div class="panel__body" id="compare"></div>
+  </section>
 </main>
 <footer>
   Data: <a href="https://archive.ics.uci.edu/dataset/1/abalone">Abalone</a>, Nash, Sellers, Talbot, Cawthorn and Ford (1994),

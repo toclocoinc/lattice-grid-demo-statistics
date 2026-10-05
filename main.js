@@ -14,22 +14,33 @@ const rows = await (await fetch('data/abalone.json')).json();
 const model = { predictors: ['shell', 'shucked', 'height', 'diameter'], response: 'rings' };
 const trend = { predictors: ['shell'], response: 'rings' }; // one predictor, so the chart can draw a band
 
-const num = (field, title, decimals = 1, width = 84) => ({ field, title, type: 'number', format: { decimals }, layout: { width } });
+const num = (field, title, tooltip, decimals = 1, width = 84) =>
+  ({ field, title, type: 'number', format: { decimals }, layout: { width }, header: { tooltip } });
 const grid = createGrid(el('grid'), {
   rowKey: 'id', rows, source: { mode: 'memory' },
   columns: [
-    num('shell', 'Shell g', 1, 76),
-    { field: 'sex', title: 'Segment', layout: { width: 80 } },
-    { field: 'rings', title: 'Rings', type: 'number', layout: { width: 66 } },
-    { id: 'fitted', title: 'Fitted rings', layout: { width: 92 }, format: { decimals: 1 }, shadow: { kind: 'fitPredicted', model } },
-    { id: 'residual', title: 'Residual', layout: { width: 84 }, format: { decimals: 1 }, shadow: { kind: 'fitResidual', model } },
-    { id: 'influential', title: 'Influential', layout: { width: 92 }, shadow: { kind: 'fitInfluence', model } },
-    { id: 'rings_odd', title: 'Unusual age', layout: { width: 96 }, shadow: { of: 'rings', kind: 'anomalyFlag' } },
-    { id: 'cooks', title: "Cook's D", layout: { width: 84 }, format: { decimals: 3 }, shadow: { kind: 'fitCooksD', model } },
-    num('shucked', 'Meat g', 1, 76), num('height', 'Height mm', 1, 90), num('diameter', 'Diameter mm', 1, 100),
-    { id: 'stdres', title: 'Std residual', layout: { width: 96 }, format: { decimals: 2 }, shadow: { kind: 'fitStdResidual', model } },
+    num('shell', 'Shell g', "Shell g: dried shell weight, in grams.", 1, 76),
+    { field: 'sex', title: 'Segment', layout: { width: 80 }, header: { tooltip: 'Segment: female, male or infant.' } },
+    { field: 'rings', title: 'Rings', type: 'number', layout: { width: 66 },
+      header: { tooltip: 'Rings: growth rings on the shell, a proxy for age.' } },
+    { id: 'fitted', title: 'Fitted rings', layout: { width: 92 }, format: { decimals: 1 }, shadow: { kind: 'fitPredicted', model },
+      header: { tooltip: "Fitted rings: the model's predicted ring count." } },
+    { id: 'residual', title: 'Residual', layout: { width: 84 }, format: { decimals: 1 }, shadow: { kind: 'fitResidual', model },
+      header: { tooltip: 'Residual: actual rings minus predicted rings.' } },
+    { id: 'influential', title: 'Influential', layout: { width: 92 }, shadow: { kind: 'fitInfluence', model },
+      header: { tooltip: 'Influential: rows that move the fitted line the most.' } },
+    { id: 'rings_odd', title: 'Unusual age', layout: { width: 96 }, shadow: { of: 'rings', kind: 'anomalyFlag' },
+      header: { tooltip: 'Unusual age: a ring count that stands out from the rest.' } },
+    { id: 'cooks', title: "Cook's D", layout: { width: 84 }, format: { decimals: 3 }, shadow: { kind: 'fitCooksD', model },
+      header: { tooltip: "Cook's D: how much the fit would change if this row were removed." } },
+    num('shucked', 'Meat g', 'Meat g: shucked (edible) weight, in grams.', 1, 76),
+    num('height', 'Height mm', 'Height mm: shell height, in millimetres.', 1, 90),
+    num('diameter', 'Diameter mm', 'Diameter mm: shell diameter, in millimetres.', 1, 100),
+    { id: 'stdres', title: 'Std residual', layout: { width: 96 }, format: { decimals: 2 }, shadow: { kind: 'fitStdResidual', model },
+      header: { tooltip: 'Std residual: the residual scaled by its standard error.' } },
     { field: 'id', title: '#', type: 'number', layout: { hidden: true } },
-    { id: 'leverage', title: 'Leverage', layout: { width: 84 }, format: { decimals: 3 }, shadow: { kind: 'fitLeverage', model } },
+    { id: 'leverage', title: 'Leverage', layout: { width: 84 }, format: { decimals: 3 }, shadow: { kind: 'fitLeverage', model },
+      header: { tooltip: "Leverage: how unusual this row's measurements are among the predictors." } },
   ],
   formatting: { influential: [{ when: { op: 'eq', value: true }, style: { background: '#fbeceb', color: '#a4262c', fontWeight: 600 } }] },
   anomalySummary: { column: 'rings' },

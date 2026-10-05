@@ -11,6 +11,16 @@ pieces in step.
 | Product site | [latticegrid.dev](https://www.latticegrid.dev) |
 | Statistics in the grid | [latticegrid.dev/statistics](https://www.latticegrid.dev/statistics/) |
 
+## About the data
+
+Abalone are marine snails harvested for food and mother-of-pearl shell. These measurements
+come from abalone collected in Tasmania in 1994 and published through the
+[UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/1/abalone) under a
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) licence. An abalone's shell grows a
+ring every year, so counting rings gives its age in years, about rings plus one and a half.
+Counting rings means cutting the shell, staining it and counting under a microscope, so this
+demo asks whether simple measurements of size and weight can predict the ring count instead.
+
 ## What it shows
 
 One table of 4,177 abalone, with a **Segment** picker above it (all, adults, females, males, infants).

@@ -44,7 +44,7 @@ const grid = createGrid(el('grid'), {
   ],
   formatting: { influential: [{ when: { op: 'eq', value: true }, style: { background: '#fbeceb', color: '#a4262c', fontWeight: 600 } }] },
   anomalySummary: { column: 'rings' },
-  toolPanel: { panels: ['statistics', { name: 'regression', props: model }], openPanel: 'statistics' },
+  toolPanel: { panels: ['statistics', { name: 'regression', props: model }], openPanel: 'regression' },
 });
 
 // The fitted line with its confidence band, and the influence picture, both over the same grid.
